@@ -23,9 +23,7 @@ export const metadata: Metadata = {
   description: 'Appointment booking system next app',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
