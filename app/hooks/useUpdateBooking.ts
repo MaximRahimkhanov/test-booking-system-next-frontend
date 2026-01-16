@@ -3,8 +3,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateBooking } from '@/lib/api';
 import { Booking } from '@/types/booking';
-import iziToast from 'izitoast';
-
 const useUpdateBooking = () => {
   const queryClient = useQueryClient();
 
@@ -16,8 +14,9 @@ const useUpdateBooking = () => {
       id: string;
       data: Partial<Pick<Booking, 'date' | 'timeFrom' | 'timeTo'>>;
     }) => updateBooking(id, data),
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ['bookings'] });
+      const iziToast = (await import('izitoast')).default;
       iziToast.success({
         title: 'Успіх',
         message: 'Запис успішно створено',
