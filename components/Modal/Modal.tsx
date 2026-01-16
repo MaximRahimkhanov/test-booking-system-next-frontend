@@ -2,7 +2,7 @@
 
 import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 
 interface ModalProps {
   onClose: () => void;
@@ -10,6 +10,8 @@ interface ModalProps {
 }
 
 const Modal = ({ children, onClose }: ModalProps) => {
+  const [mounted, setMounted] = useState(false);
+
   const closeModal = useCallback(() => {
     if (onClose) onClose();
   }, [onClose]);
@@ -21,6 +23,7 @@ const Modal = ({ children, onClose }: ModalProps) => {
   };
 
   useEffect(() => {
+    setMounted(true);
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeModal();
     };
@@ -33,6 +36,8 @@ const Modal = ({ children, onClose }: ModalProps) => {
       document.body.style.overflow = '';
     };
   }, [closeModal]);
+
+  if (!mounted) return null;
 
   return createPortal(
     <div className={css.backdrop} onClick={handleBackdropClick} role="dialog" aria-modal="true">
