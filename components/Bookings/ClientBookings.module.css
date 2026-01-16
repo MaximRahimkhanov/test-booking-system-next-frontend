@@ -1,0 +1,14 @@
+.div {
+  background-color: rgb(251, 255, 255);
+  padding: 3px;
+}
+.cancelled {
+  color: red;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.active {
+  color: green;
+  font-weight: 600;
+}

@@ -1,5 +1,5 @@
-// import css from './Loader.module.css';
-
-export function Loader() {
+const Loader = () => {
   return <p>Loading, please wait...</p>;
-}
+};
+
+export default Loader;

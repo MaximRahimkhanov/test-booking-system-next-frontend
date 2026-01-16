@@ -1,23 +1,16 @@
-import css from './home.module.css';
+import css from './page.module.css';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div>
-      <main>
-        <div className={css.container}>
-          <h1 className={css.title}>Welcome to NoteHub</h1>
-          <p className={css.description}>
-            NoteHub is a simple and efficient application designed for managing personal notes. It
-            helps keep your thoughts organized and accessible in one place, whether you are at home
-            or on the go.
-          </p>
-          <p className={css.description}>
-            The app provides a clean interface for writing, editing, and browsing notes. With
-            support for keyword search and structured organization, NoteHub offers a streamlined
-            experience for anyone who values clarity and productivity.
-          </p>
-        </div>
-      </main>
-    </div>
+    <section className={css.homeSection}>
+      <h1 className={css.h1}>Вітаю вас в тестовій Системі бронювання зустрічей.</h1>
+      <p className={css.p}>
+        По перше вам потрібно перейти до сторінки ``Користувачі`` в навігації хедера, в правому
+        верхньому куті екрану. Коли Ви це все читаєте сторінка з користувачами вже завантажуєтся, і
+        коли ви перейдете на неї вам не доведеться довго чекати, до поки сервер на Render
+        прокинеться. Ми його заздалегіть розбудимо спеціально для Вас.
+      </p>
+      <p className={css.p}>С повагою Максим, Гарного Вам дня</p>
+    </section>
   );
 }
