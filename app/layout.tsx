@@ -32,10 +32,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <TanStackProvider>
           <Header />
-          <main className={css.main}>
-            {children}
-            {modal}
-          </main>
+          <main className={css.main}>{children}</main>
           <Footer />
           <ReactQueryDevtools initialIsOpen={false} />
         </TanStackProvider>
