@@ -1,25 +1,31 @@
+'use client';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createBooking } from '@/lib/api';
-import iziToast from 'izitoast';
 
 const useCreateBooking = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: createBooking,
-    onSuccess: () => {
+
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ['bookings'] });
+
+      const iziToast = (await import('izitoast')).default;
       iziToast.success({
         title: 'Успіх',
-        message: 'Звпис успішно створений',
+        message: 'Запис успішно створений',
         position: 'topRight',
         timeout: 3000,
       });
     },
-    onError: () => {
+
+    onError: async () => {
+      const iziToast = (await import('izitoast')).default;
       iziToast.error({
         title: 'Помилка',
-        message: 'Звпис успішно створений',
+        message: 'Не вдалося створити запис',
         position: 'topRight',
         timeout: 3000,
       });

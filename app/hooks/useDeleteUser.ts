@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteUser } from '@/lib/api';
-import iziToast from 'izitoast';
 
 const useDeleteUser = () => {
   const queryClient = useQueryClient();
@@ -8,11 +7,23 @@ const useDeleteUser = () => {
   return useMutation({
     mutationFn: deleteUser,
 
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
+
+      const iziToast = (await import('izitoast')).default;
       iziToast.success({
         title: 'Успіх',
-        message: 'Користувач успішно видалений',
+        message: 'Користувача успішно видалено',
+        position: 'topRight',
+        timeout: 3000,
+      });
+    },
+
+    onError: async () => {
+      const iziToast = (await import('izitoast')).default;
+      iziToast.error({
+        title: 'Помилка',
+        message: 'Не вдалося видалити користувача',
         position: 'topRight',
         timeout: 3000,
       });

@@ -1,7 +1,6 @@
 'use client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createUser } from '@/lib/api';
-import iziToast from 'izitoast';
 
 const useCreateUser = () => {
   const queryClient = useQueryClient();
@@ -9,8 +8,9 @@ const useCreateUser = () => {
   return useMutation({
     mutationFn: createUser,
 
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
+      const iziToast = (await import('izitoast')).default;
       iziToast.success({
         title: 'Успіх',
         message: 'Користувач успішно створений',
@@ -18,10 +18,12 @@ const useCreateUser = () => {
         timeout: 3000,
       });
     },
-    onError: () => {
+
+    onError: async () => {
+      const iziToast = (await import('izitoast')).default;
       iziToast.error({
         title: 'Помилка',
-        message: 'НЕ ВІЛІДНИЙ PASSWORD АБО EMAIL ',
+        message: 'Невалідний пароль або email',
         position: 'topRight',
         timeout: 3000,
       });

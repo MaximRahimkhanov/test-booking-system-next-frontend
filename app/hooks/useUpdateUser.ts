@@ -1,8 +1,8 @@
 'use client';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateUser } from '@/lib/api';
 import { User } from '@/types/user';
-import iziToast from 'izitoast';
 
 interface UpdateUserArgs {
   id: string;
@@ -15,8 +15,10 @@ const useUpdateUser = () => {
   return useMutation({
     mutationFn: ({ id, data }: UpdateUserArgs) => updateUser(id, data),
 
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
+
+      const iziToast = (await import('izitoast')).default;
       iziToast.success({
         title: 'Успіх',
         message: 'Дані користувача були відредаговані',
