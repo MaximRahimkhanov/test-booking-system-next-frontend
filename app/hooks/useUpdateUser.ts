@@ -1,4 +1,4 @@
-'use cliemt';
+'use client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateUser } from '@/lib/api';
 import { User } from '@/types/user';
