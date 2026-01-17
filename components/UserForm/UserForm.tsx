@@ -45,6 +45,7 @@ const UserForm = ({ onClose }: UserFormProps) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
+        placeholder="password"
       />
 
       <select value={role} onChange={(e) => setRole(e.target.value as Role)}>
