@@ -44,10 +44,19 @@ const BookingForm = ({ clientId, onClose }: { clientId: string; onClose: () => v
           </option>
         ))}
       </select>
-
-      <input type="date" onChange={(e) => setDate(e.target.value)} />
-      <input type="time" onChange={(e) => setTimeFrom(e.target.value)} />
-      <input type="time" onChange={(e) => setTimeTo(e.target.value)} />
+      <label>
+        {' '}
+        Дата запису
+        <input type="date" onChange={(e) => setDate(e.target.value)} />
+      </label>
+      <label>
+        Час початок
+        <input type="time" onChange={(e) => setTimeFrom(e.target.value)} />
+      </label>
+      <label>
+        Час кінець
+        <input type="time" onChange={(e) => setTimeTo(e.target.value)} />
+      </label>
 
       <button onClick={submit}>Записатися</button>
     </div>

@@ -34,11 +34,18 @@ const EditBookingModal = ({ booking, onClose }: Props) => {
     <Modal onClose={onClose}>
       <h3>Редагувати запис</h3>
       <div className={css.div}>
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-
-        <input type="time" value={timeFrom} onChange={(e) => setTimeFrom(e.target.value)} />
-
-        <input type="time" value={timeTo} onChange={(e) => setTimeTo(e.target.value)} />
+        <label>
+          Дата зустрічі
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        </label>
+        <label>
+          Час початок
+          <input type="time" value={timeFrom} onChange={(e) => setTimeFrom(e.target.value)} />
+        </label>
+        <label>
+          Час кінець
+          <input type="time" value={timeTo} onChange={(e) => setTimeTo(e.target.value)} />
+        </label>
 
         <button onClick={submitHandler} disabled={updateBooking.isPending}>
           Зберегти
